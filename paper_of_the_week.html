@@ -117,51 +117,45 @@
     </footer>
 
         <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/1pj_bHTd7RDTGN4NDmmmD8KTYK-4Nvla5rMgvPJZPpoY/export?format=csv';
+       document.addEventListener("DOMContentLoaded", function() {
+    const GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/1pj_bHTd7RDTGN4NDmmmD8KTYK-4Nvla5rMgvPJZPpoY/export?format=csv';
 
-            function parseCSV(text) {
-                let lines = text.split('\n');
-                let result = [];
-                let headers = lines[0].split(",");
+    fetch(GOOGLE_SHEET_CSV_URL)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.text();
+    })
+    .then(data => {
+        const rows = data.split('\n').slice(1); // skip the header row
+        let htmlContent = '';
 
-                for (let i = 1; i < lines.length; i++) {
-                    let obj = {};
-                    let currentline = lines[i].split(",");
-                    for (let j = 0; j < headers.length; j++) {
-                        obj[headers[j].trim()] = currentline[j]?.trim();
-                    }
-                    result.push(obj);
-                }
-                return result;
+        rows.forEach(row => {
+            const [date, title, source, presenter] = row.split(',');
+
+            // Ensure that the row has the expected number of columns to avoid errors
+            if ([date, title, source, presenter].includes(undefined)) {
+                return;
             }
 
-            fetch(GOOGLE_SHEET_CSV_URL)
-                .then(response => response.text())
-                .then(data => {
-                    const parsedData = parseCSV(data);
-                    let htmlContent = '';
-
-                    parsedData.forEach(row => {
-                        if (!row["Date"] || !row["Title of the paper"] || !row["Source"] || !row["Presenter"]) return;
-
-                        htmlContent += `
-                            <tr>
-                                <td>${row["Date"]}</td>
-                                <td>${row["Title of the paper"]}</td>
-                                <td>${row["Source"]}</td>
-                                <td>${row["Presenter"]}</td>
-                            </tr>
-                        `;
-                    });
-
-                    document.querySelector('#papersTable tbody').innerHTML = htmlContent;
-                })
-                .catch(error => {
-                    console.error('Error fetching the CSV file:', error);
-                    alert('There was an error fetching the data. Please check the console for details.');
-                });
+            htmlContent += `
+                <tr>
+                    <td>${date.trim()}</td>
+                    <td>${title.trim()}</td>
+                    <td>${source.trim()}</td>
+                    <td>${presenter.trim()}</td>
+                </tr>
+            `;
         });
+
+        document.querySelector('#papersTable tbody').innerHTML = htmlContent; // add the rows to the table
+    })
+    .catch(error => {
+        console.error('Error fetching the CSV file:', error);
+    });
+});
+
     </script>
 </body>
 </html>
