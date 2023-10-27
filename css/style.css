@@ -1,79 +1,45 @@
 body {
     font-family: 'Arial', sans-serif;
+    background-color: #f2f2f2;
+    color: #333;
+    line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
 }
 
-header {
-    background-color: #2c2c2c;
-    padding: 20px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo img {
-    width: 60px;
-    margin-left: 50px;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    margin-right: 50px;
-}
-
-nav ul li {
-    margin: 0 15px;
-}
-
-nav ul li a {
-    text-decoration: none;
+header, footer {
+    background-color: #003366;  /* deep navy blue */
     color: white;
-    font-size: 0.9em;
-    padding: 5px 10px;
-    border-radius: 5px;
-    transition: background-color 0.2s;
+    padding: 1rem 5%;
 }
 
-nav ul li a:hover {
-    background-color: #4a4a4a;
+header img {
+    max-width: 100px;
+}
+
+nav a {
+    margin: 0 1rem;
+    color: white;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
 }
 
 main {
-    width: 80%;
-    margin: 40px auto;
-    padding: 20px 50px;
+    padding: 3% 5%;
     background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 3% auto;
+    max-width: 1000px;
 }
 
-.intro h1 {
-    color: #333;
-    font-size: 1.5em;
-    margin-bottom: 10px;
+h1, h2 {
+    font-family: 'Georgia', serif;
+    color: #003366;
 }
 
-.intro p {
-    margin-bottom: 30px;
-    color: #777;
-}
-
-.reading-groups .group h2 {
-    font-size: 1.1em;
-    margin-bottom: 10px;
-}
-
-.reading-groups .group p {
-    margin-bottom: 10px;
-    color: #555;
-}
-
-footer {
-    text-align: center;
-    padding: 20px 0;
-    background-color: #2c2c2c;
-    color: white;
-    margin-top: 40px;
+.group:not(:last-child) {
+    margin-bottom: 2rem;
 }
