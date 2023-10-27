@@ -1,75 +1,63 @@
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f2f2f2;
-    color: #333;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-}
-
-header {
-    background-color: #003366; /* deep navy blue */
-    text-align: center;
-    padding: 1rem 0;
-}
-
-.header-content p {
-    font-family: 'Georgia', serif;
-    font-size: 1.5em;
-    margin-bottom: 1em;
-    color: white;
-}
-
-header img {
-    max-width: 300px; /* Adjust according to your logo size */
-    display: block;
-    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
 }
 
 nav {
+    background-color: #2a2a2a;
+    padding: 10px;
+}
+
+nav ul {
     display: flex;
-    justify-content: space-around;
-    margin-top: 1em;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav li {
+    margin: 0 10px;
 }
 
 nav a {
-    margin: 0;
-    color: white;
     text-decoration: none;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
 }
 
 nav a:hover {
-    text-decoration: underline;
+    background-color: #555;
 }
 
-/* ... rest remains same ... */
-
-/* For Responsiveness */
-
-@media (max-width: 768px) {
-    header img {
-        max-width: 200px;
-    }
-
-    .header-content p {
-        font-size: 1.2em;
-    }
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
 
-@media (max-width: 576px) {
-    nav {
-        flex-direction: column;
-    }
+.main-content p {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
 
-    nav a {
-        margin: 0.5em 0;
-    }
+.main-content img {
+    max-width: 100%;
+    height: auto;
+}
 
-    header img {
-        max-width: 150px;
-    }
-
-    .header-content p {
-        font-size: 1em;
-    }
+footer {
+    background-color: #2a2a2a;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
 }
