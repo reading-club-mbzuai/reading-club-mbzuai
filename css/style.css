@@ -7,18 +7,33 @@ body {
     padding: 0;
 }
 
-header, footer {
-    background-color: #003366;  /* deep navy blue */
+header {
+    background-color: #003366; /* deep navy blue */
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.header-content p {
+    font-family: 'Georgia', serif;
+    font-size: 1.5em;
+    margin-bottom: 1em;
     color: white;
-    padding: 1rem 5%;
 }
 
 header img {
-    max-width: 100px;
+    max-width: 300px; /* Adjust according to your logo size */
+    display: block;
+    margin: 0 auto;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1em;
 }
 
 nav a {
-    margin: 0 1rem;
+    margin: 0;
     color: white;
     text-decoration: none;
 }
@@ -27,19 +42,34 @@ nav a:hover {
     text-decoration: underline;
 }
 
-main {
-    padding: 3% 5%;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 3% auto;
-    max-width: 1000px;
+/* ... rest remains same ... */
+
+/* For Responsiveness */
+
+@media (max-width: 768px) {
+    header img {
+        max-width: 200px;
+    }
+
+    .header-content p {
+        font-size: 1.2em;
+    }
 }
 
-h1, h2 {
-    font-family: 'Georgia', serif;
-    color: #003366;
-}
+@media (max-width: 576px) {
+    nav {
+        flex-direction: column;
+    }
 
-.group:not(:last-child) {
-    margin-bottom: 2rem;
+    nav a {
+        margin: 0.5em 0;
+    }
+
+    header img {
+        max-width: 150px;
+    }
+
+    .header-content p {
+        font-size: 1em;
+    }
 }
