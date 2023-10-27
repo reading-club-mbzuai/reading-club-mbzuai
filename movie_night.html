@@ -136,7 +136,7 @@
             const [date, time,location, movie_name, source] = row.split(',');
 
             // Ensure that the row has the expected number of columns to avoid errors
-            if ([date,time,location, title, source, presenter].includes(undefined)) {
+            if ([date, time,location, movie_name, source].includes(undefined)) {
                 return;
             }
 
