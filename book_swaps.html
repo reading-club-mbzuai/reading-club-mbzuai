@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBZUAI Reading Club - Paper of the Week</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Noto Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+
+        header {
+            background-color: #e9ecef;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            color: #343a40;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            background-color: #f9f9f9;
+            border-top: 1px solid #e1e1e1;
+            border-bottom: 1px solid #e1e1e1;
+        }
+
+        nav a {
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 15px 0;
+            color: #333;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #007BFF;
+        }
+
+        .main-content {
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        table {
+            width: 80%;
+            margin: 50px auto;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>MBZUAI Reading Club</h1>
+    </header>
+    <nav>
+        <a href="#">Paper of the Week</a>
+        <a href="#">Movie Night</a>
+        <a href="#">Book Swaps & Meetups</a>
+        <a href="#">Reading Retreat</a>
+        <a href="#">Workshops</a>
+        <a href="#">Contact</a>
+    </nav>
+
+    <div class="main-content">
+        <h2>Movie Nights Schedule</h2>
+        <table id="papersTable">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Location</th>
+                    <th>Book Name</th>
+                    <th>Source</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data will be filled here by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <footer>
+        MBZUAI Reading Club © 2023
+    </footer>
+
+        <script>
+       document.addEventListener("DOMContentLoaded", function() {
+    const GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/1u8Rd12YGyfNNt5S8JVyG23q_ZqnIIvf7jclCq-BcS_A/export?format=csv&gid=1568892709'
+
+    fetch(GOOGLE_SHEET_CSV_URL)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.text();
+    })
+    .then(data => {
+        const rows = data.split('\n').slice(1); // skip the header row
+        let htmlContent = '';
+
+        rows.forEach(row => {
+            const [date, time,location, book_name, source] = row.split(',');
+
+            // Ensure that the row has the expected number of columns to avoid errors
+            if ([date, time,location, book_name, source].includes(undefined)) {
+                return;
+            }
+
+            htmlContent += `
+                <tr>
+                    <td>${date.trim()}</td>
+                    <td>${time.trim()}</td>
+                    <td>${location.trim()}</td>
+                    <td>${book_name.trim()}</td>
+                    <td>${source.trim()}</td>
+                </tr>
+            `;
+        });
+
+        document.querySelector('#papersTable tbody').innerHTML = htmlContent; // add the rows to the table
+    })
+    .catch(error => {
+        console.error('Error fetching the CSV file:', error);
+    });
+});
+
+    </script>
+</body>
+</html>
