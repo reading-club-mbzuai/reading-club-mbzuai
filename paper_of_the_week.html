@@ -101,6 +101,8 @@
             <thead>
                 <tr>
                     <th>Date</th>
+                    <th>Time</th>
+                    <th>Location</th>
                     <th>Title of the paper</th>
                     <th>Source</th>
                     <th>Presenter</th>
@@ -133,16 +135,18 @@
         let htmlContent = '';
 
         rows.forEach(row => {
-            const [date, title, source, presenter] = row.split(',');
+            const [date, time,location, title, source, presenter] = row.split(',');
 
             // Ensure that the row has the expected number of columns to avoid errors
-            if ([date, title, source, presenter].includes(undefined)) {
+            if ([date,time,location, title, source, presenter].includes(undefined)) {
                 return;
             }
 
             htmlContent += `
                 <tr>
                     <td>${date.trim()}</td>
+                    <td>${time.trim()}</td>
+                    <td>${location.trim()}</td>
                     <td>${title.trim()}</td>
                     <td>${source.trim()}</td>
                     <td>${presenter.trim()}</td>
